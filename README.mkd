@@ -1,0 +1,12 @@
+## About
+
+An open-source Facebook like BigPipe implementation.
+
+## Reference
+
+https://www.facebook.com/notes/facebook-engineering/bigpipe-pipelining-web-pages-for-high-performance/389414033919
+
+## Contributions
+
+* Adones Cunha
+* Rafael Caricio
