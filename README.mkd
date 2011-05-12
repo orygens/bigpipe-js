@@ -2,9 +2,21 @@
 
 An open-source Facebook like BigPipe implementation.
 
+## Development
+
+# Tests
+
+To run all tests is simple. Go to the project main path and run:
+
+    $ make test
+
+And then open your prefered web browser and access:
+
+    http://localhost:8000/tests/runner.html
+
 ## Reference
 
-https://www.facebook.com/notes/facebook-engineering/bigpipe-pipelining-web-pages-for-high-performance/389414033919
+* https://www.facebook.com/notes/facebook-engineering/bigpipe-pipelining-web-pages-for-high-performance/389414033919
 
 ## Contributions
 
