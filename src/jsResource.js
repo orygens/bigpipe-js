@@ -9,11 +9,4 @@
 *
 */
 
-describe("Using BigPipe", function() {
-
-    it("should be tested", function() {
-        ;
-    });
-
-});
 

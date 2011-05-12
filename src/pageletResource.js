@@ -9,18 +9,4 @@
 *
 */
 
-(function($) {
 
-    $.widget("bigpipe.bigpipe", {
-
-        options: {
-            pagelets: []
-        },
-
-        _create: function() {
-            this._phase = 0;
-        }
-
-    });
-
-})(jQuery);
