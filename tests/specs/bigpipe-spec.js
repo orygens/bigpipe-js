@@ -65,6 +65,8 @@ describe("The BigPipe", function() {
             this.cssCallback = jasmine.createSpy();
             this.container.bind("loadCSS", this.cssCallback);
 
+            $.fn.Pagelet = jasmine.createSpy();
+
             $(this.container).BigPipe({pagelets:[pagelet]});
         });
 
@@ -138,6 +140,8 @@ describe("The BigPipe", function() {
 
             this.cssCallback = jasmine.createSpy();
             this.container.bind("loadCSS", this.cssCallback);
+
+            $.fn.Pagelet = jasmine.createSpy();
 
             $(this.container).BigPipe({pagelets:[pagelet, pagelet]});
         });
