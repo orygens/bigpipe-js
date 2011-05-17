@@ -9,4 +9,15 @@
 *
 */
 
+(function($) {
 
+    $.widget("bigpipe.Pagelet", {
+
+        options: {},
+
+        _create: function() {
+        }
+
+    });
+
+})(jQuery);

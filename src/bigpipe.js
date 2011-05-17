@@ -11,17 +11,57 @@
 
 (function($) {
 
-    $.widget("bigpipe.bigpipe", {
+    $.widget("bigpipe.BigPipe", {
 
         options: {
             pagelets: []
         },
 
         _create: function() {
-            this._phase = 0;
+
+            this.pageletCount = this.options.pagelets.length;
+
+            $.each(this.options.pagelets, $.proxy(function() {
+                this.element.Pagelet({
+                    id: this.id,
+                    content: this.content,
+                    css: this.css,
+                    js: this.js
+                });
+            }, this));
+
+            this._bindEvents();
+
+            this.element.trigger("loadCSS");
         },
 
-        pagelet: function(data) {
+        _bindEvents: function() {
+            this.element.bind("cssLoaded.BigPipe", this._afterAll(this._cssLoaded));
+            this.element.bind("contentLoaded.BigPipe", this._afterAll(this._contentLoaded));
+            this.element.bind("jsLoaded.BigPipe", this._afterAll(this._jsLoaded));
+        },
+
+        _afterAll: function(handler) {
+            var counter = this.pageletCount;
+            return $.proxy(function(ev) {
+                counter -= 1;
+                if (counter <= 0) {
+                    $.proxy(handler, this)();
+                }
+            }, this);
+        },
+
+        _cssLoaded: function() {
+            this.element.trigger("loadContent");
+        },
+
+        _contentLoaded: function() {
+            this.element.trigger("loadJS");
+        },
+
+        _jsLoaded: function() {
+            this.element.trigger("onLoad");
+            this.element.unbind(".BigPipe");
         }
 
     });

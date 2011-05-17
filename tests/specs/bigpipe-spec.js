@@ -9,35 +9,23 @@
 *
 */
 
-describe("The Bigpipe", function() {
+describe("The BigPipe", function() {
 
     describe("when use it without parameters", function() {
 
         beforeEach(function() {
             this.container = $("<div></div>");
-            $(this.container).bigpipe();
+            $(this.container).BigPipe();
         });
 
         it("should be able to call without parameters", function() {
-            expect(this.container.data("bigpipe")).toBeTruthy();
+            expect(this.container.data("BigPipe")).toBeTruthy();
         });
 
         describe("the bigpipe object", function() {
 
             beforeEach(function() {
-                this.bigpipe = this.container.data("bigpipe");
-            });
-
-            it("should have a phase attribute to mark all stages of a Bigpipe engine", function() {
-                expect(this.bigpipe._phase).toBeDefined();
-            });
-
-            describe("the phase atribute", function() {
-
-                it("should be initialized with 0", function() {
-                    expect(this.bigpipe._phase).toEqual(0);
-                });
-
+                this.bigpipe = this.container.data("BigPipe");
             });
 
             it("should have a pagelets option to store all pagelets that should be executed", function() {
@@ -48,6 +36,133 @@ describe("The Bigpipe", function() {
 
                 it("should be initialized with a empty array", function() {
                    expect(this.bigpipe.options.pagelets).toEqual([]);
+                });
+
+            });
+
+        });
+
+    });
+
+    describe("when use with an unique pagelet with content", function() {
+
+        beforeEach(function() {
+            var html = [
+                "<div>",
+                    "<div class='mypagelet'></div>",
+                "</div>"
+            ];
+
+            var pagelet = {
+                id: "mypagelet",
+                content: "<strong>hello world!</strong>",
+                css: [],
+                js: []
+            };
+
+            this.container = $(html.join(""));
+
+            this.cssCallback = jasmine.createSpy();
+            this.container.bind("loadCSS", this.cssCallback);
+
+            $(this.container).BigPipe({pagelets:[pagelet]});
+        });
+
+        it("should trigger the loadCSS event", function() {
+            expect(this.cssCallback).toHaveBeenCalled();
+        });
+
+        describe("when load all css files", function() {
+
+            beforeEach(function() {
+                this.contentCallback = jasmine.createSpy();
+                this.container.bind("loadContent", this.contentCallback);
+
+                this.container.trigger("cssLoaded");
+            });
+
+            it("should call loadContent event", function() {
+                expect(this.contentCallback).toHaveBeenCalled();
+            });
+
+            describe("when load all content", function() {
+
+                beforeEach(function() {
+                    this.jsCallback = jasmine.createSpy();
+                    this.container.bind("loadJS", this.jsCallback);
+
+                    this.container.trigger("contentLoaded");
+                });
+
+                it("should call loadJS event", function() {
+                    expect(this.jsCallback).toHaveBeenCalled();
+                });
+
+                describe("when load all js", function() {
+
+                    beforeEach(function() {
+                        this.onloadCallback = jasmine.createSpy();
+                        this.container.bind("onLoad", this.onloadCallback);
+
+                        this.container.trigger("jsLoaded");
+                    });
+
+                    it("should call onload event", function() {
+                        expect(this.onloadCallback).toHaveBeenCalled();
+                    });
+
+                });
+
+            });
+
+        });
+
+    });
+
+    describe("when use two pagelets", function() {
+
+        beforeEach(function() {
+            var html = [
+                "<div>",
+                "</div>"
+            ];
+
+            var pagelet = {
+                id: "mypagelet",
+                content: "<strong>hello world!</strong>",
+                css: [],
+                js: []
+            };
+
+            this.container = $(html.join(""));
+
+            this.cssCallback = jasmine.createSpy();
+            this.container.bind("loadCSS", this.cssCallback);
+
+            $(this.container).BigPipe({pagelets:[pagelet, pagelet]});
+        });
+
+        describe("when load one css file", function() {
+
+            beforeEach(function() {
+                this.contentCallback = jasmine.createSpy();
+                this.container.bind("loadContent", this.contentCallback);
+
+                this.container.trigger("cssLoaded");
+            });
+
+            it("should not call loadContent event before all css files is loaded", function() {
+                expect(this.contentCallback).not.toHaveBeenCalled();
+            });
+
+            describe("when load all CSS", function() {
+
+                beforeEach(function() {
+                    this.container.trigger("cssLoaded");
+                });
+
+                it("should call loadContent event", function() {
+                    expect(this.contentCallback).toHaveBeenCalled();
                 });
 
             });
