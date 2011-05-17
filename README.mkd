@@ -19,5 +19,6 @@ Then open your prefered web browser and access:
 
 ## Contributions
 
-* Adones Cunha - https://github.com/adonescunha
 * Rafael Caricio - https://github.com/rafaelcaricio
+* Bernardo Heynemann - https://github.com/heynemann
+* Adones Cunha - https://github.com/adonescunha
