@@ -46,7 +46,7 @@
             return $.proxy(function(ev) {
                 counter -= 1;
                 if (counter <= 0) {
-                    $.proxy(handler, this)();
+                    handler.call(this);
                 }
             }, this);
         },
