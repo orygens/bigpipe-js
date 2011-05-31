@@ -11,6 +11,21 @@
 
 (function($) {
 
+    var pagelets = [],
+        callbacks = {};
+
+    var jQueryBigPipe = function(pagelets, callbacks) {
+
+    };
+
+    jQueryBigPipe.loadPagelet = function(key) {
+        $.error("Not yet implemented!");
+    };
+
+    $.extend({
+        bigPipe: jQueryBigPipe
+    });
+
     $.widget("bigpipe.BigPipe", {
 
         options: {
