@@ -15,7 +15,7 @@ Then open your prefered web browser and access:
 ## Reference
 
 * BigPipe: Pipelining web pages for high performance - https://www.facebook.com/notes/facebook-engineering/bigpipe-pipelining-web-pages-for-high-performance/389414033919
-* This project is based on another project that uses Prototype Framework - https://github.com/dynamoid/bigpipe
+* This project is based on another project that uses Prototype Framework - https://github.com/dynamoid/bigpipe-abandoned
 
 ## Contributions
 
