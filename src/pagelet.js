@@ -1,7 +1,7 @@
 /*
 *
 * Bigpipe JS
-* https://github.com/adonescunha/bigpipe
+* https://github.com/orygens/bigpipe-js
 *
 * Licensed under the MIT license:
 * http://www.opensource.org/licenses/mit-license

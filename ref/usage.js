@@ -1,7 +1,9 @@
+var bigpipe;
+
 var pagelets = [
     {
         key: 'else',
-        container: $('div'),
+        container: "#timeline", // always an object id
         url: "/home#!pagelet=timeline", 
         css: ["/media/common.css", "/media/css/timeline.css"],
         js: ["a.js", "b.js", "c.js"],
@@ -9,17 +11,17 @@ var pagelets = [
     },
     {
         key: 'whatever',
-        container: ".friends_box",
+        container: "#friends_box",
         content: "<div>Hello World</div>",  //Content to be placed directly in the element's innerHTML
         css: ["/media/css/friends_box.css"],
         js: ["a.js", "d.js", "e.js"],
         onContentLoaded: function() { //Markup and CSS loaded
-            $.bigPipe.loadPagelet('friends_box');
+            bigpipe.loadPagelet('friends_box');
         }
     },
     {
         key: 'friends_box',
-        container: ".friends_box",
+        container: "#friends_box",
         url: "/home#!pagelet=timeline", 
         css: ["/media/css/friends_box.css"],
         js: ["a.js", "j.js"],
@@ -27,7 +29,7 @@ var pagelets = [
     }
 ];
 
-$.bigPipe(pagelets, {
+bigpipe = new Bigpipe(pagelets, {
     onLoad: function() {
         // all content and scripts loaded
     }
